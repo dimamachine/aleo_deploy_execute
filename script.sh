@@ -24,6 +24,8 @@ cd "$APPNAME" && leo run && cd -
 PATHTOAPP=$(realpath -q $APPNAME)
 cd $PATHTOAPP && cd ..
 snarkos developer deploy "$APPNAME.aleo" --private-key "$PRIVATEKEY" --query "https://vm.aleo.org/api" --path "./$APPNAME/build/" --broadcast "https://vm.aleo.org/api/testnet3/transaction/broadcast" --fee 600000 --record "$RECORD"
+echo -e "Wait: 1 minute"
+sleep 60
 snarkos developer execute "$APPNAME.aleo" "main" "1u32" "2u32" --private-key "$PRIVATEKEY" --query "https://vm.aleo.org/api" --broadcast "https://vm.aleo.org/api/testnet3/transaction/broadcast"
 echo -e "\033[32mDeploy and Execute done!\033[0m\n"
 echo -e "Contract name: \033[33m$APPNAME\033[0m\n"
